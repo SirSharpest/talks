@@ -63,7 +63,7 @@
 
 ** Benefits of discussing the data
 *** Explaining teaches
-- Going through and explaining data makes you reevaluate it
+- Going through and explaining data makes you re-evaluate it
 - Stops you taking data for granted!
 - Helps you recognise your own mistakes and misunderstandings
 
