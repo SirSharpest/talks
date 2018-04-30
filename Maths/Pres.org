@@ -67,10 +67,11 @@
 - Stops you taking data for granted!
 - Helps you recognise your own mistakes and misunderstandings
 
-
+** Benefits of discussing the data
 *** Analysis is a living and evolving process
 - "Individuals and interactions over processes and tools"
   - Kent Beck /et al/.
+
 ** Group discussion
 *** Suggestions
 - Our group suggested that Principal Component Analysis would be well suited to the data
