@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k+kn}{as} \PYG{n+nn}{plt}
+\PYG{n}{filename}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}./images/dist.png\PYGZsq{}}
+\PYG{n}{data} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{10000}\PYG{p}{,}\PYG{l+m+mi}{1000}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} You are generating 1000 points between 0 and 1.}
+\PYG{n}{count}\PYG{p}{,} \PYG{n}{bins}\PYG{p}{,} \PYG{n}{ignored} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{data}\PYG{p}{,}
+                                \PYG{l+m+mi}{100}\PYG{p}{,}
+                                \PYG{n}{facecolor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}green\PYGZsq{}}\PYG{p}{,}
+                                \PYG{n}{edgecolor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}black\PYGZsq{}}\PYG{p}{,}
+                                \PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{1.2}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}X\PYGZti{}U[1,10000]\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Count\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Uniform Distribution Histogram (Bin size 100)\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} x\PYGZus{}start, x\PYGZus{}end, y\PYGZus{}start, y\PYGZus{}end}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n+nb+bp}{True}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\PYG{k}{return}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\end{Verbatim}

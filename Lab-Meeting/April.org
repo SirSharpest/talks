@@ -1,0 +1,496 @@
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [t, aspectratio=169]
+#+BEAMER_THEME: Amsterdam [compress]
+#+latex_header:  \usepackage{natbib}
+#+latex_header: \beamertemplatenavigationsymbolsempty
+#+latex_header: \BeforeBeginEnvironment{frame}{\subsection{}}
+#+latex_header: \usepackage[font=small,skip=0pt]{caption}
+
+#+OPTIONS:  H:2 ^:nil
+
+#+TITLE: Modelling the effects of domestication in Wheat through novel computer-vision techniques
+#+AUTHOR: Nathan Hughes
+
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{block begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block alerted begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block example begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+
+\AtBeginSection[]
+  {
+    \ifnum \value{framenumber}>3
+      \begin{frame}<beamer>[noframenumbering]
+      \frametitle{Outline}
+      \tableofcontents[currentsection]
+      \end{frame}
+    \else
+    \fi
+  }
+
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{bibliography item}{size=\footnotesize}
+\setbeamerfont{bibliography entry author}{size=\footnotesize}
+\setbeamerfont{bibliography entry title}{size=\footnotesize}
+\setbeamerfont{bibliography entry location}{size=\footnotesize}
+\setbeamerfont{bibliography entry note}{size=\footnotesize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+#+END_EXPORT
+
+* Project Description
+
+** What is the project?
+
+*** Description
+
+The project is aiming to use computational methods to answer biologically significant
+ questions on wheat grain morphology and domestication using \textmu{CT} images.
+
+*** How?
+
+To do this, I will be using:
+
+- Computer vision on 3D image sets
+- Statistical analysis and data science
+- Scientific theory to create reproducible results
+
+** About Wheat Domestication
+
+*** Why Domestication?
+- Answers to questions about diversity in the wheat genus is hidden in the ancestors cite:Cockram2007
+- Crop breeding depends on making informed decisions, exploring domestication presents an opportunity to augment these decisions
+
+*** Why \microCT?
+- In this project, \micro-CT has enabled the study of individual seeds of wheat
+- Particularly examining traits which are lost during other methods:
+  - Depth, 3D shape, spike location, spikelet formation etc.
+
+
+** Population Diversity
+
+#+CAPTION: Phylogeny of wheat genotypes (Provided by Dr. Hugo Oliveira)
+#+ATTR_LATEX: :width 7cm
+#+NAME: fig:phylo
+[[file:./images/philotree.png]]
+
+** Research Question:
+*** Is it possible to use \textmu{CT} imaging to answer questions about Wheat domestication?
+/I hope so!/
+*** Main Groups that we are comparing
+1. Einkorn Wild and Einkorn Domesticated
+2. Emmer Wild and Emmer Domesticated
+3. Spelt and Bread wheat
+4. Emmer Domesticated and Pasta Wheat
+5. Einkorn Wild and Emmer Wild
+
+
+** Aims
+
+*** Primary Aims
+
+I am wanting to produce:
+
+- A software library (in Python) which can be used to help analysis of \textmu{CT} scanned seeds
+- A GUI application for researchers to use to auto analyse seeds
+- Descriptions of the differences/similarities of the aforementioned groups
+
+
+** Extracted Features
+
+*** Features List						      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.45
+   :END:
+
+The features I am collecting are:
+
+- Length
+- Width
+- Depth
+- Volume
+- Surface Area
+- X,Y,Z coordinates of grains
+
+*** Image							      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_col: 0.6
+   :END:
+   #+ATTR_LATEX: :width 8cm
+   #+CAPTION: Major features extracted from analysis
+    [[./images/seeds.png]]
+
+* Materials and Methods
+
+** Materials (Plant)
+*** Wheat information						      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.4
+   :END:
+
+We have a wide range of Wheat genotypes, these are:
+- Ranged between diploid, tetraploid and hexaploid
+- 12 total genotypes
+- Divided between domestication status
+
+*** Image							      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_col: 0.6
+   :END:
+   #+LATEX: \vspace{-1.7cm}
+   #+ATTR_LATEX: :width 4.6cm
+   #+CAPTION: Two wheat spikes, showing diversity in Population, Club Wheat (6N) left, Pasta Wheat right (4N)
+    [[./images/spikes.png]]
+
+** Methods
+*** CT Scanning software                                              :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+
+The features where extracted using an improved and optimised version of
+our software which was used in our previous study.
+
+\vspace{0.5cm}
+
+Modifications were implemented to handle the wide range of diversity in the population of
+this experiment
+
+*** Image							      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_col: 0.5
+   :END:
+   #+LATEX: \vspace{-1cm}
+   #+ATTR_LATEX: :width 7cm
+   #+CAPTION: Grains extracted from our imaging software and displayed in 3D
+    [[./images/ctgrains.png]]
+
+* Data Analysis
+** Why I don't trust the T-Test
+*** Proof of deception
+#+ATTR_LATEX: :width 7cm
+#+NAME: fig:ttest
+#+CAPTION: Exhibit A - Why the T-Test is evil
+[[./images/ttest.png]]
+
+** Bayesian Hypothesis Testing
+*** Why?
+    #+ATTR_BEAMER: :overlay +-
+- "Despite their wide use in scientific journals ..., statistical  hypothesis tests add very little value to the products of research" - citep:Johnson1999a
+- It provides interpretable answers, such as “the true parameter \theta has a probability of 0.95 of falling in a 95% credible interval.”
+- Allows for missing data points i.e. where a complete range of data is not possible i.e. ALL OF BIOLOGY
+
+** Bayesian Model Used
+*** Bayes states that
+- $P(A|B) \propto P(B|A) \times P(A)$
+  - The posterior is proportional to the likelihood times the prior
+- $P(mean.1 | sample.1) \propto P(sample.1 | mean.1) \times  P(mean.1)$
+*** Likelihood is described as
+- $y_i^{(g)} \sim T(\nu, \mu, \sigma)$
+  - $\nu$ (Degrees of freedom) is assumed similar for groups $g$
+  - $\mu$ (mean) of groups is assumed the same
+  - $\sigma$ (S.D.) is assumed the same
+
+** Prior Mean $\mu$
+
+*** Mean :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.6
+   :END:
+- Using the method described in citep:Kruschke2012
+- $\mu_k \sim N(\bar{x},2s)$
+  - The data are real-values and normal priors are applied (to ensure the posterior follows suit)
+  - $2s$ - twice the S.D. ensures no values are favoured in the model
+
+*** Distribution                                                      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.4
+   :END:
+#+BEGIN_SRC python :results file :exports results
+  import numpy as np
+  import matplotlib.pyplot as plt
+  filename='./images/mu.png'
+  data = np.random.normal(1,10000,2000) # You are generating 1000 points between 0 and 1.
+  count, bins, ignored = plt.hist(data,
+				  20,
+				  facecolor='green',
+				  edgecolor='black',
+				  alpha=0.5,
+				  linewidth=1.2)
+
+  plt.xlabel('Mean Value')
+  plt.ylabel('Count')
+  plt.title("Normal Distribution Histogram (Bin size 20)")
+  # x_start, x_end, y_start, y_end
+  plt.grid(True)
+  plt.savefig(filename)
+  return(filename)
+#+END_SRC
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Normal$(\bar{x},2s)$
+#+RESULTS:
+[[file:./images/mu.png]]
+
+
+** Prior Standard Deviations $\sigma$
+*** Standard Deviations                                :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.6
+   :END:
+- Using the method described in citep:Kruschke2012
+- $\text{Uniform}(1,10000)$ is used
+- Whilst no values in the model will have this range, it makes no difference due to random sampling
+- Figure:[[fig:dist]] shows the distribution expected by random sampling
+*** Distribution                                                      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.4
+   :END:
+#+BEGIN_SRC python :results file :exports results
+  import numpy as np
+  import matplotlib.pyplot as plt
+  filename='./images/dist.png'
+  data = np.random.uniform(1,10000,2000) # You are generating 1000 points between 0 and 1.
+  count, bins, ignored = plt.hist(data,
+				  20,
+				  facecolor='green',
+				  edgecolor='black',
+				  alpha=0.5,
+				  linewidth=1.2)
+
+  plt.xlabel('X~U[1,10000]')
+  plt.ylabel('Count')
+  plt.title("Uniform Distribution Histogram (Bin size 20)")
+  # x_start, x_end, y_start, y_end
+  plt.grid(True)
+  plt.savefig(filename)
+  return(filename)
+#+END_SRC
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:dist
+#+CAPTION: Uniform(1,10000)
+#+RESULTS:
+[[file:./images/dist.png]]
+
+** Prior Degrees of freedom $\nu$
+*** Degrees of freedom                                                :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.6
+   :END:
+- Using the method described in citep:Kruschke2012
+- $\nu$ of 30 is used with an exponential distribution
+- Shown in Figure:[[fig:expo]]
+
+
+*** Distribution                                                      :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.4
+   :END:
+#+BEGIN_SRC python :results file :exports results
+  import numpy as np
+  import matplotlib.pyplot as plt
+  filename='./images/dist2.png'
+  data = np.random.exponential(30, 10000)
+  count, bins, ignored = plt.hist(data,
+				  40,
+				  facecolor='green',
+				  edgecolor='black',
+				  alpha=0.5,
+				  linewidth=1.2)
+
+  plt.xlabel('Values')
+  plt.ylabel('Count')
+  plt.title("Exponential Distribution Histogram (Bin size 40)")
+  plt.grid(True)
+  plt.savefig(filename)
+  return(filename)
+#+END_SRC
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:expo
+#+CAPTION: Exponential Distribution
+#+RESULTS:
+[[file:./images/dist2.png]]
+
+
+
+** Sampling and Testing
+*** Markov chain Monte Carlo
+- 1000 random samples are drawn using Markov chain Monte Carlo
+  - This is done twice, independently to ensure convergence of randomness
+- These provide a posterior of possibilities where the same mean could exist for the given data
+
+* Example of Method
+** Example Input Data
+
+#+ATTR_LATEX: :width 7.5cm
+#+NAME: fig:bayesintro
+#+CAPTION: Histogram of input data
+[[file:exampledata.png]]
+
+** Example Posterior
+
+#+ATTR_LATEX: :width 7.5cm
+#+NAME: fig:bayeshist
+#+CAPTION: Histogram of posterior data
+[[file:examplebayes.png]]
+
+** Example Difference of Means
+
+#+ATTR_LATEX: :width 7.5cm
+#+NAME: fig:bayeshist2
+#+CAPTION: Histogram of posterior data subtracted
+[[file:examplebayes2.png]]
+
+** Example Forest Plot
+#+ATTR_LATEX: :width 7.5cm
+#+NAME: fig:bayeshist3
+#+CAPTION: Forest Plot of both chains (bold is 95% of data)
+[[file:examplebayes3.png]]
+
+* Results
+
+** Einkorn Wild and Einkorn Domesticate ($P<0.01$)
+
+*** Boxplots                                                          :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Boxplot for volume
+[[file:./images/monobox.png]]
+
+*** Difference of means                                               :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Difference of means
+[[file:./images/monodiff.png]]
+
+
+** Emmer Wild and Emmer Domesticated ($P = 0.032$)
+*** Boxplots                                                          :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Boxplot for width
+[[file:./images/dicbox.png]]
+
+*** Difference of means                                               :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Difference of means
+[[file:./images/dicdiff.png]]
+
+
+
+** Spelt and Bread wheat ($P = 0.11$)
+
+*** Boxplots                                                          :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Boxplot for width
+[[file:./images/speltbox.png]]
+
+*** Difference of means                                               :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+
+#+ATTR_LATEX: :width 4.5cm
+#+NAME: fig:mu
+#+CAPTION: Difference of means
+[[file:./images/speltdiff.png]]
+
+
+
+
+* Software Progress
+
+** Loading CT Data
+#+ATTR_LATEX: :width 10cm
+#+NAME: fig:dl
+#+CAPTION: Showing the Data loading window
+[[./images/1.png]]
+
+** Investigating CT Data Distributions
+#+ATTR_LATEX: :width 10cm
+#+NAME: fig:dl
+#+CAPTION: Histogram of some data attributes
+[[./images/2.png]]
+
+
+** Comparing CT Data Distributions
+#+ATTR_LATEX: :width 10cm
+#+NAME: fig:dl
+#+CAPTION: Grouping by data columns
+[[./images/3.png]]
+
+
+** Running T-Tests on CT Data
+#+ATTR_LATEX: :width 10cm
+#+NAME: fig:dl
+#+CAPTION: Running T-Tests
+[[./images/4.png]]
+
+
+** Running Bayesian Tests on CT Data
+#+ATTR_LATEX: :width 10cm
+#+NAME: fig:dl
+#+CAPTION: Running Bayesian Tests
+[[./images/5.png]]
+
+
+
+* Thanks
+
+** Thanks to
+
+*** All these people:
+#+attr_latex: :environment longtable :align ll :width 10cm
+#+NAME: tab:thanks
+| Dr. Wayne Aubrey  | Prof. John Doonan    |
+| Dr. Candida Nibau | Dr. Kevin Williams   |
+| Mr. Jason Brook   | Everyone at the NPPC |
+** References
+
+bibliography:library.bib
+bibliographystyle:plainnat

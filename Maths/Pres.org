@@ -1,0 +1,108 @@
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [t, aspectratio=169]
+#+BEAMER_THEME: Amsterdam [compress]
+#+latex_header:  \usepackage{natbib}
+#+latex_header: \beamertemplatenavigationsymbolsempty
+#+latex_header: \BeforeBeginEnvironment{frame}{\subsection{}}
+#+latex_header: \usepackage[font=small,skip=0pt]{caption}
+
+#+OPTIONS:  H:2 ^:nil
+
+#+TITLE: Statistical Consulting For Biology
+#+AUTHOR: Nathan Hughes
+
+
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{block begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block alerted begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block example begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{bibliography item}{size=\footnotesize}
+\setbeamerfont{bibliography entry author}{size=\footnotesize}
+\setbeamerfont{bibliography entry title}{size=\footnotesize}
+\setbeamerfont{bibliography entry location}{size=\footnotesize}
+\setbeamerfont{bibliography entry note}{size=\footnotesize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+#+END_EXPORT
+
+* Intro
+** What was the data set
+*** We focused on looking at a μCT image dataset
+- Its output (morphometric) data.
+- This was part of a Wheat (/Triticum aestivum/) drought experiment.
+
+#+ATTR_latex: :width 7cm
+[[./seeds.png]]
+
+** Experiment Details
+*** Drought Experiment Parameters
+
+#+ATTR_latex: :environment longtable :align l|l
+| *Normal Watering* | *Droughted* |
+|-------------------+-------------|
+| 25C               | 25C         |
+| 30C               | 30C         |
+| 35C               | 35C         |
+
+
+* Working as a group
+** Working as a group
+*** Insight
+- I was already very familiar with the data
+- Which  meant I was too close to it to be "open-minded"
+
+** Benefits of discussing the data
+*** Explaining teaches
+- Going through and explaining data makes you reevaluate it
+- Stops you taking data for granted!
+- Helps you recognise your own mistakes and misunderstandings
+
+
+*** Analysis is a living and evolving process
+- "Individuals and interactions over processes and tools"
+  - Kent Beck /et al/.
+** Group discussion
+*** Suggestions
+- Our group suggested that Principal Component Analysis would be well suited to the data
+  - It may provide a method of looking at which traits are most effected by the experiment treatments
+- Another idea was using MANOVA to explore mean differences in treatments
+
+
+* Presenting Data
+** Presenting the data
+*** Interest in how best you could convey information
+- We looked at the data from a visualisation point of view
+- How you could show details on morphometric phenotypes in concise charts, plots or diagrams
+- We knew that some of the data couldn't be used, but not /why/
+** Showing the errors in the data
+#+ATTR_latex: :width 14cm
+[[./peter.png]]
+
+** Showing relationships of traits
+#+ATTR_latex: :width 14cm
+[[./corrmatrix.png]]
+
+* Feedback from audience
+** Feedback from audience
+*** Suggested Models
+- Multiple Regressions
+- Simple linear models
+- More suggestions to use MANOVA
+*** Similar with the group's initial ideas
+ - Which shows how different fields instinctively tackle/solve problems
+
+
+* Thanks
+
+** Thanks for listening!
+*** Any Questions?
