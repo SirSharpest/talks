@@ -1,0 +1,25 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Wittkopp and Kalay(2012)]{wittkoppCisregulatoryElementsMolecular2012}
+Patricia~J. Wittkopp and Gizem Kalay.
+\newblock {\emph{Cis}}-regulatory elements: Molecular mechanisms and
+  evolutionary processes underlying divergence.
+\newblock \emph{Nature Reviews Genetics}, 13\penalty0 (1):\penalty0 59--69,
+  January 2012.
+\newblock ISSN 1471-0064.
+\newblock \doi{10.1038/nrg3095}.
+
+\bibitem[Carroll(2008)]{carrollEvoDevoExpandingEvolutionary2008}
+Sean~B. Carroll.
+\newblock Evo-{{Devo}} and an {{Expanding Evolutionary Synthesis}}: {{A Genetic
+  Theory}} of {{Morphological Evolution}}.
+\newblock \emph{Cell}, 134\penalty0 (1):\penalty0 25--36, July 2008.
+\newblock ISSN 0092-8674.
+\newblock \doi{10.1016/j.cell.2008.06.030}.
+
+\end{thebibliography}

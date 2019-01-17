@@ -1,0 +1,139 @@
+#+STARTUP: beamer
+#+LaTeX_CLASS: beamer
+#+OPTIONS:  H:2 ^:nil
+#+LaTeX_CLASS_OPTIONS: [t, aspectratio=169, allowframebreaks]
+#+BEAMER_THEME: Amsterdam [compress]
+#+latex_header: \beamertemplatenavigationsymbolsempty
+#+latex_header:  \usepackage[numbers, authoryear, round]{natbib}
+#+latex_header: \BeforeBeginEnvironment{frame}{\subsection{}}
+
+
+
+
+#+BEGIN_EXPORT latex
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{\tempone\addtolength{\itemsep}{0.6\baselineskip}}{\temptwo}
+
+\addtobeamertemplate{block begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block alerted begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+\addtobeamertemplate{block example begin}{%
+  \setlength{\textwidth}{1.0\textwidth}%
+}{}
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{bibliography item}{size=\footnotesize}
+\setbeamerfont{bibliography entry author}{size=\footnotesize}
+\setbeamerfont{bibliography entry title}{size=\footnotesize}
+\setbeamerfont{bibliography entry location}{size=\footnotesize}
+\setbeamerfont{bibliography entry note}{size=\footnotesize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+#+END_EXPORT
+
+
+#+TITLE: How do /cis/-regulatory elements evolve in plants?
+#+AUTHOR: Nathan Hughes
+
+
+
+* Introduction
+** What is the project?
+*** *Main question*: How do /cis/-regulatory elements evolve in plants?
+- /Cis/ meaning same
+  - in this case elements on the same DNA strand
+- i.e. how do non-coding elements on the same DNA strand affect gene expression?
+
+** What are /cis/-regulatory elements?
+
+*** /Cis/-regulatory elements
+- They are usually enhancers and promoters that control development and physiology by regulating gene expression. [fn:1: cite:wittkoppCisregulatoryElementsMolecular2012]
+
+#+CAPTION: Example promoter containing cis-regulatory elements. Cis-elements can be repeated more than once (purple) and can recruit different transcription factors (blue/red), all driving the same gene (green)
+#+ATTR_LATEX: :width 9cm
+#+NAME: fig:cisregulatoryelements
+[[./cis-elements.png]]
+
+** Why are they important?
+
+*** Gene expression / phenotypic variation
+- For most of the twentieth century, evolution of protein-coding sequences was commonly thought to be primarily (if not solely) responsible for phenotypic evolution
+- Whereas more recent studies show that mutations which affect the function of these sequences contribute to phenotypic diversity within and between species
+  - Many studies imply divergent /cis/-regulatory activity in phenotypic evolution [fn:carroll: cite:carrollEvoDevoExpandingEvolutionary2008]
+
+* Methods
+
+** How can you study the evolution of /cis/-regulatory elements, in plants?
+
+*** Materials :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+- Start with a little known plant: /Arabidopsis thaliana/
+  - Has an extremely well covered genome, as well as transcription factor database
+- Will later move towards /Nicotiana benthamiana/, to evaluate how transferable work on model systems are to others'
+
+*** Plants                                                            :BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.5
+   :END:
+#+CAPTION: Example of /Arabidopsis/ and /Nicotiana/
+#+ATTR_LATEX: :width 6.4cm
+#+NAME: fig:Plants
+[[./plants.png]]
+
+** Promoter study
+
+*** Procedure to evaluate ?
+
+First choose two types of promoters to study:
+
+*The most constitutively expressed* and *Nitrogen-responsive*
+
+For each promoter type:
+1) Identify motifs where TFs bind, check if any TFs are commonly used
+2) Determine whether any patterns or similarities are present in groups/types of TFs
+3) Incorporate nucleosome occupancy data (whether DNA is wrapped around a nucleosome or is open)
+4) Verify hypothesis in lab
+
+
+* Progress
+
+** Identifying TF binding motifs of interest
+
+*** Using MEME and FIMO to predict TF binding motifs
+#+CAPTION: Example FIMO output for promoter of AT1G71820
+#+ATTR_LATEX: :width 14cm
+#+NAME: fig:fimo
+[[./genes.png]]
+
+** Lab work
+
+*** Progress towards testing selected regions of interest
+- Designed primers in Benchling and ordered them for each of the promoters/promoter parts if mutating RE cut site
+- Ran PCR with primers and At template DNA
+  - didn't work, changed conditions
+  - tried different DNA template - worked
+- Made own At CTAB DNA template
+  - PCR didn’t work
+- Using higher concentration of template DNA worked
+
+
+** References
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=
+   :END:
+
+
+ bibliographystyle:unsrtnat
+ bibliography:../../Notes/library.bib
